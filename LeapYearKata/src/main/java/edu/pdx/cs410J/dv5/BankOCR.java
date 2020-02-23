@@ -6,12 +6,17 @@ import java.util.Map;
 
 public class BankOCR {
     public static void main(String args[]){
-        StringBuilder sb = new StringBuilder();
-        sb.append(" _ _     _  _  _  _  _  _\n");
-        sb.append(" _|_||_||_ |_   ||_||_|| |\n");
-        sb.append("|_ _|  | _||_|  ||_| _||_|\n");
-        String input = sb.toString();
-        char[][] arr = new char[4][27];
+        /*StringBuilder sb = new StringBuilder();
+        sb.append(" _  _     _  _  _  _  _  _\n");
+        sb.append(" _| _||_||_ |_   ||_||_|| |\n");
+        sb.append("|_  _|  | _||_|  ||_| _||_|\n");
+        String input = sb.toString();*/
+
+        char[][] input = {{' ','_',' ',' ','_',' ',' ',' ',' ',' ','_',' ',' ','_',' ',' ','_',' ',' ','_',' ',' ','_',' ',' ','_',' '},
+                          {' ','_','|',' ','_','|','|','_','|','|','_',' ','|','_',' ',' ',' ','|','|','_','|','|','_','|','|',' ','|'},
+                          {'|','_',' ',' ','_','|',' ',' ','|',' ','_','|','|','_','|',' ',' ','|','|','_','|',' ','_','|','|','_','|'},
+                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}};
+
         Map<String, Integer> map = new HashMap<String, Integer>();
         map.put("     |  |",1);
         map.put(" _  _||_ ",2);
@@ -25,16 +30,16 @@ public class BankOCR {
         map.put(" _ | ||_|",0);
         int count = 0;
         StringBuilder accNum = new StringBuilder();
-        while(count<=27){
+        for(int k = 0; k < 9; k++) {
             StringBuilder temp = new StringBuilder();
-
+            int c = (k%9)*3;
             for(int i = 0; i < 3; i++) {
-                for(int j = count; j < count+3; j++){
-                    temp.append(arr[i][j]);
+                for(int j = c; j < c + 3; j++){
+                    temp.append(input[i][j]);
                 }
             }
-            accNum.append(map.get(sb.toString()));
-            count += 3;
+            System.out.println(temp.toString());
+            accNum.append(map.get(temp.toString()));
         }
 
         System.out.print("The account number is " + accNum.toString());
